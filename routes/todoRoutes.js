@@ -5,9 +5,9 @@ import {
   updateTodo,
   deleteTodo,
   
-  // markAsCompleted,
+  
 } from "../controllers/todoController.js";
-// import { authenticate } from "../middleware/authMiddleware.js";
+
 
 const router = express.Router();
 
@@ -19,7 +19,6 @@ router.put("/:id",  updateTodo);
 
 router.delete("/:id",  deleteTodo);
 
-// router.patch("/:id/complete", authenticate, markAsCompleted);
 
 
 export default router;

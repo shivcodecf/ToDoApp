@@ -3,10 +3,10 @@ import mongoose from "mongoose";
 
 
 
-export const createTodo = async (req, res) => {
+export const createTodo = async(req, res) => {
   try {
 
-    const { title, description } = req.body;
+    const {title, description } = req.body;
 
     if (!title) {
 
@@ -18,7 +18,9 @@ export const createTodo = async (req, res) => {
 
     res.status(201).json({ message: "Todo created successfully", todo });
 
-  } catch (error) {
+  } 
+  
+  catch (error) {
 
     console.error(error);
 
@@ -29,28 +31,33 @@ export const createTodo = async (req, res) => {
 };
 
 
-export const getTodos = async (req, res) => {
+export const getTodos = async(req, res) => {
+
   try {
 
     const todos = await Todo.find();
 
     res.status(200).json({ todos });
 
-  } catch (error) {
+  } 
+  
+  catch (error) {
 
     console.error(error);
 
     res.status(500).json({ message: "Server error", error });
 
   }
+
 };
 
 
 export const updateTodo = async (req, res) => {
   try {
-    const { id } = req.params;
 
-    const { title, description } = req.body;
+    const {id } = req.params;
+
+    const {title, description} = req.body;
 
   
     if (!mongoose.isValidObjectId(id)) {
@@ -62,7 +69,7 @@ export const updateTodo = async (req, res) => {
     const updatedTodo = await Todo.findByIdAndUpdate(
 
       id,
-      
+
       { title, description },
 
       { new: true } 
@@ -89,8 +96,10 @@ export const updateTodo = async (req, res) => {
 
 
 
-export const deleteTodo = async (req, res) => {
+export const deleteTodo = async(req, res) => {
+
   try {
+
     const { id } = req.params; 
 
     const deletedTodo = await Todo.findByIdAndDelete(id);
@@ -103,7 +112,9 @@ export const deleteTodo = async (req, res) => {
 
     res.status(200).json({ message: "Todo deleted successfully", success: true });
 
-  } catch (error) {
+  } 
+  
+  catch (error) {
 
     console.error(error);
 
@@ -113,23 +124,4 @@ export const deleteTodo = async (req, res) => {
 };
 
 
-// export const markAsCompleted = async (req, res) => {
-//   try {
-//     const { id } = req.params;
 
-//     const todo = await Todo.findByIdAndUpdate(
-//       id,
-//       { isCompleted: true },
-//       { new: true }
-//     );
-
-//     if (!todo) {
-//       return res.status(404).json({ message: "Todo not found" });
-//     }
-
-//     res.status(200).json({ message: "Todo marked as completed", todo });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server error", error });
-//   }
-// };
