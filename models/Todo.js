@@ -18,13 +18,7 @@ const todoSchema = new mongoose.Schema(
 
     },
 
-    // isCompleted: {
-
-    //   type: Boolean,
-
-    //   default: false,
-
-    // },
+   
 
   },
 

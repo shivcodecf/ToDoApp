@@ -14,7 +14,8 @@ export const createTodo = async(req, res) => {
 
     }
 
-    const todo = await Todo.create({ title, description });
+    const todo = await Todo.create({ title, description }); //mongodb me store karna
+    
 
     res.status(201).json({ message: "Todo created successfully", todo });
 
